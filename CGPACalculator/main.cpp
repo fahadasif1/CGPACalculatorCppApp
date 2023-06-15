@@ -6,30 +6,45 @@
 //
 
 #include <iostream>
+#include <vector>
+#include<numeric>
+#include <iomanip>
+
 // using directive
 using namespace std;
-
-
-
+vector< int > arr;
+vector< int > arr2;
+// elcome message
 void welcome() {
-    cout << "\tWelcome to CGPA Calculator!\n";
-    cout << "To calculate your CGPA enter the subject name followed by a space then your marks.\n";}
+    cout << "\t\t\t\t\t ----------------------------\n";
+    cout << "\t\t\t\t\t| Welcome to CGPA Calculator |\n";
+    cout << "\t\t\t\t\t ----------------------------\n";
+    
+    cout << "\tTo calculate your CGPA enter the number of subjects then your marks for all subjects.\n";}
 
+// getting the input marks and feeding into vector
 void inputData(){
-    cout << "Enter the total number of subjects your calculating cgpa for?\n";
+    cout << "\nEnter the total number of subjects your calculating cgpa for: ";
     int a=0;
     cin >> a;
-    int b=0;
+    cout << "\n";
+    int b=1;
+    int z;
+    cout << "Enter marks for your first subject: ";
+    cin >> z;
+    
+    arr.push_back(z);
     while (b<a){
-        //countinue herre
+        cout << "Enter Your marks for subject " << b+1;
+        cout << ": ";
+        cin >> z;
+        
+        arr.push_back(z);
+        b++;
     }
-    cout << "Input your subject and marks\n";
-    string s;
-    cin >> s;
-    
-    
 }
 
+// converting marks to grade points
 int marksToGradePointTable(int x){
    
     if (x>=91&&x<=100) {
@@ -51,15 +66,47 @@ int marksToGradePointTable(int x){
     }
 }
 
+
+
 void cgpaCalculator(){
+    
+    int len = 0;
+       for (int element: arr2)
+          len++;
+    
+    cout << "Calculating Your CGPA . . . \n";
+    int n = accumulate(arr2.begin(),arr2.end(),0);
+    cout << "CGPA = Total Grade Point Obtained / No. of Subjects \n";
+    cout << "CGPA = " << n << "/" << len << " = ";
+    float z = (float)n/ (float)len;
+    cout << fixed << setprecision(1) << z;
     
     
 }
 
-
 int main(int argc, const char * argv[]) {
-    // insert code here...
+   
     welcome();
+    inputData();
+   
+    cout<< "\n\t\tGrade Point Table \n";
+    cout << " -------------------------------\n";
+    cout << "|Subject | Marks | Grade Point  |\n";
+    
+    for (int i = 0; i < arr.size(); i++)
+    {
+         arr2.push_back(marksToGradePointTable(arr[i]));
+       
+       
+            cout << "|  "<< i+1 << "\t |  "<< arr[i] << "   |\t\t " << arr2[i]<< " \t\t|\n";        }
+    
+    cout << " -------------------------------\n";
+    cout << "\n";
+   
+    cgpaCalculator();
+    
+    cout << "\n\n";
+
     return 0;
 }
 
