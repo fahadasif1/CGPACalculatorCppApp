@@ -119,17 +119,17 @@ int main(int argc, const char * argv[]) {
         inputData();
         
         cout<< "\n\t\tGrade Point Table \n";
-        cout << " -------------------------------\n";
-        cout << "|Subject | Marks | Grade Point  |\n";
+        cout << " -----------------------------\n";
+        cout << "|Subject | Marks | Grade Point|\n";
         
         for (int i = 0; i < arr.size(); i++)
         {
             arr2.push_back(marksToGradePointTable(arr[i]));
             
             
-            cout << "|  "<< i+1 << "\t |  "<< arr[i] << "   |\t\t " << arr2[i]<< " \t\t|\n";        }
+            cout << "   "<< i+1 << "\t    "<< arr[i] << "    \t\t " << arr2[i]<< " \t\t \n";        }
         
-        cout << " -------------------------------\n";
+        cout << " -----------------------------\n";
         cout << "\n";
         
         cgpaCalculator();
